@@ -1,0 +1,8 @@
+@function n($a) {
+  @return $a/75 + rem;
+}
+
+@function v($a) {
+  @return $a/7.5 + vw;
+}
+

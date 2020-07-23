@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+
+}
+
+*:not(input, textarea) {
+    /* H5禁用长摁选择文本 */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    /* overflow-y: hidden; */
+}
+
+/*修改ios按钮默认样式*/
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+    -webkit-appearance: none;
+}
+
+.main {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: normal;
+}
+
+ol,
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-touch-callout: none
+}
+
+a:focus,
+a:active {
+    outline: 0
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+button {
+    border: none;
+    background: none;
+    outline: none;
+    /* 可解决ios 无法点击问题*/
+    cursor: pointer;
+}
+
+/* 隐藏高德logo */
+.amap-logo {
+    display: none !important;
+}
+
+.amap-copyright {
+    display: none !important;
+}
+
+.routePop {
+    bottom: 30vw !important;
+}
+
+.my-toast-icon {
+    width: 1.86667rem;
+    height: 1.86667rem;
+
+}
+
+.my-toast-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #00D6A1;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+
+@keyframes spin {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 0deg);
+    }
+
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 360deg);
+    }
+}
