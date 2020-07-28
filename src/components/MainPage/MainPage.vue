@@ -7,6 +7,9 @@
     <div v-for="user of state.userArray" :key="user.id">
       <span>{{user.name}}</span>
     </div>
+    <div>
+      <van-field v-model="state.value" @input="numFilter" label="文本" placeholder="请输入用户名" />
+    </div>
   </div>
 </template>
 
@@ -16,15 +19,24 @@ import {
   reactive,
   onMounted,
   ref,
-  watchEffect
+  watchEffect,
 } from '@vue/composition-api';
+import { Field } from 'vant';
 export default defineComponent({
   name: 'MainPage',
+  components: {
+    'van-field': Field,
+  },
   setup(props, context) {
     const state = reactive({
       name: 'test',
-      userArray: []
+      userArray: [],
+      value: '666'
     });
+
+    function numFilter() {
+      state.value = state.value.replace(/[^\d]/g, '')
+    }
 
     const count = ref(0); // ref 和 reactive 的区别在此
 
@@ -46,10 +58,10 @@ export default defineComponent({
       context.root.$axios
         .post('/activity/interactionPoint/getPointData', {
           data: {
-            watermarkId: this.watermarkId
-          }
+            watermarkId: this.watermarkId,
+          },
         })
-        .then(res => {
+        .then((res) => {
           console.log(res);
         });
     }
@@ -57,7 +69,7 @@ export default defineComponent({
     function gotoNextPage() {
       console.log('gotoNextPage');
       this.$router.push({
-        name: 'SubPage'
+        name: 'SubPage',
       });
     }
 
@@ -66,9 +78,10 @@ export default defineComponent({
       increment,
       gotoNextPage,
       testAxios,
-      count
+      count,
+      numFilter
     };
-  }
+  },
 });
 </script>
 
