@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   defineComponent,
   reactive,
@@ -21,6 +21,7 @@ import {
   ref,
   watchEffect,
 } from '@vue/composition-api';
+import axios from '@/axios'
 import { Field } from 'vant';
 export default defineComponent({
   name: 'MainPage',
@@ -55,10 +56,10 @@ export default defineComponent({
     }
 
     function testAxios() {
-      context.root.$axios
+      axios
         .post('/activity/interactionPoint/getPointData', {
           data: {
-            watermarkId: this.watermarkId,
+            watermarkId: state.value,
           },
         })
         .then((res) => {
@@ -68,7 +69,7 @@ export default defineComponent({
 
     function gotoNextPage() {
       console.log('gotoNextPage');
-      this.$router.push({
+      context.root.$router.push({
         name: 'SubPage',
       });
     }
