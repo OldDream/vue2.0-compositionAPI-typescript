@@ -21,8 +21,8 @@ import {
   ref,
   watchEffect,
 } from '@vue/composition-api';
-import axios from '@/axios'
 import { Field } from 'vant';
+
 export default defineComponent({
   name: 'MainPage',
   components: {
@@ -56,7 +56,7 @@ export default defineComponent({
     }
 
     function testAxios() {
-      axios
+      context.root.$axios
         .post('/activity/interactionPoint/getPointData', {
           data: {
             watermarkId: state.value,
