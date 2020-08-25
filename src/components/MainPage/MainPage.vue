@@ -29,6 +29,7 @@ export default defineComponent({
     'van-field': Field,
   },
   setup(props, context) {
+    console.log(context)
     const state = reactive({
       name: 'test',
       userArray: [],

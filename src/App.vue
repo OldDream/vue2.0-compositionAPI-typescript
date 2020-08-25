@@ -6,16 +6,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed, reactive } from '@vue/composition-api';
 export default defineComponent({
   name: 'App',
-  setup(props, context) {
+  setup(props, { root }) {
     const state = reactive({
       name: 'hyn',
       userArray: []
     });
-    const keepAliveComponents = computed(() => context.root.$store.state.keepAliveComponents);
+    const keepAliveComponents = computed(() => root.$store.state.keepAliveComponents);
 
     // 暴露给模板
     return {
