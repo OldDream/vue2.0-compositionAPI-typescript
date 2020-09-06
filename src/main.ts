@@ -29,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
     store.commit("popNObjFromKeepAliveComponents", from.meta.keepAliveWeight - to.meta.keepAliveWeight);
     next()
   } else if (from.meta.keepAliveWeight && !to.meta.keepAliveWeight) {
-    store.commit("cleanKeepAliveComponents");  // 清除全部缓存
+    store.commit("cleanKeepAliveComponents");  // 从有权重页面跳转到无权重页面，清除全部缓存
   }
   // 添加页面缓存
   to.meta.keepAlive && store.commit('addKeepAlive', to.name)
