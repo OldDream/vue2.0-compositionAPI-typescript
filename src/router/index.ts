@@ -19,7 +19,7 @@ const routes: Array<RouteConfig> = [
     meta: {
       title: ' ',
       keepAlive: true,
-      allowLeaveKeepCache: ['SubPage']
+      keepAliveWeight: 1
     }
   },
   {

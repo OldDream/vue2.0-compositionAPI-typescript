@@ -23,14 +23,13 @@ router.beforeEach(async (to, from, next) => {
     console.log('save scroll hight: ' + scrollTop)
   }
   // 检查前往的页面
-  if (from.meta.allowLeaveKeepCache && from.meta.allowLeaveKeepCache.includes(to.name)) {
-    if (from.meta.goAndRemoveSelfCache && from.meta.goAndRemoveSelfCache.includes(to.name)) {
-      store.commit("popNObjFromKeepAliveComponents", 1);
-      next()
-    }
-  } else {
-    // 清除全部缓存
-    store.commit("cleanKeepAliveComponents");
+  if (from.meta.keepAliveWeight && to.meta.keepAliveWeight) {
+    if (from.meta.keepAliveWeight - to.meta.keepAliveWeight > 0)
+    // 从高权重页面往低权重页面跳转，清除部分缓存，删除数量为权重的差
+    store.commit("popNObjFromKeepAliveComponents", from.meta.keepAliveWeight - to.meta.keepAliveWeight);
+    next()
+  } else if (from.meta.keepAliveWeight && !to.meta.keepAliveWeight) {
+    store.commit("cleanKeepAliveComponents");  // 清除全部缓存
   }
   // 添加页面缓存
   to.meta.keepAlive && store.commit('addKeepAlive', to.name)
