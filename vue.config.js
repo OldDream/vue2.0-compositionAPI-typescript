@@ -26,14 +26,14 @@ module.exports = {
   configureWebpack: {
     module: {
       rules: [
-        
+
       ]
     },
   },
   css: {
     loaderOptions: {
       sass: {
-        prependData: `
+        additionalData: `
           @import "@/scss/global.scss";
         `
       }
