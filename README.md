@@ -12,7 +12,7 @@
 
 ### 自带特性
 
-- 利用 keepAlive，结合 vue-router 中 meta 属性，实现了基于路由变化的  **状态保存 ** 逻辑。具体逻辑详见 `main.ts`
+- 利用 keepAlive，结合 vue-router 中 meta 属性，实现了基于路由变化的  **状态保存** 逻辑。具体逻辑详见 `main.ts`
 
   
 
