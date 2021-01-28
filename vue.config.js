@@ -18,7 +18,7 @@ module.exports = {
           })
           return args
         })
-      config.devtool(false)
+      config.devtool(false) // 可用 nosources-source-map，不带源码，只包含行列数
     } else { // 测试包
       config.devtool('source-map')
     }
