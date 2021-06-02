@@ -2,11 +2,16 @@
   <div class="hello">
     <van-button type="primary" @click="gotoNextPage">去另一页</van-button>
     <van-button @click="testAxios">发起axios请求</van-button>
+    <div>
+      <SubPage />
+      <SubPage />
+    </div>
     <h1>名称：{{state.name}}</h1>
     <h3 @click="increment">点击数：{{count}}</h3>
     <div v-for="user of state.userArray" :key="user.id">
       <span>{{user.name}}</span>
     </div>
+    
     <div>
       <van-field v-model="state.value" @input="numFilter" label="文本" placeholder="请输入用户名" />
     </div>
@@ -22,17 +27,19 @@ import {
   watchEffect,
 } from '@vue/composition-api';
 import { Field } from 'vant';
+import SubPage from '../SubPage/SubPage.vue'
 
 export default defineComponent({
   name: 'MainPage',
   components: {
     'van-field': Field,
+    SubPage
   },
   setup(props, context) {
     console.log(context)
     const state = reactive({
       name: 'test',
-      userArray: [],
+      userArray: new Array<{name: String, id: number}>(),
       value: '666'
     });
 

@@ -1,53 +1,74 @@
 <template>
   <div class="hello">
-    <h1>名称：{{state.name}}</h1>
-    <h3 @click="increment">点击数：{{count}}</h3>
+    <h1>名称：{{ state.name }}</h1>
+    <h3 @click="increment">点击数：{{ count }}</h3>
+    <van-button type="primary" @click="addNum">添加</van-button>
+    <van-button type="primary" @click="print">打印</van-button>
     <div v-for="user of state.userArray" :key="user.id">
-      <span>{{user.name}}</span>
+      <span>{{ user.name }}</span>
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent, reactive, onMounted, ref, watchEffect } from '@vue/composition-api';
+<script lang='ts'>
+import {
+  defineComponent,
+  reactive,
+  onMounted,
+  ref,
+  watchEffect,
+} from '@vue/composition-api';
 import axios from 'axios';
 export default defineComponent({
   name: 'SubPage',
   setup() {
     const state = reactive({
       name: 'SubPage',
-      userArray: []
+      userArray: new Array<{name: String, id: number}>(),
     });
+    let dataNum = 0;
 
-    const count = ref(0) // ref 和 reactive 的区别在此
+    const count = ref(0); // ref 和 reactive 的区别在此
 
     function getData() {
-      axios.get('https://jsonplaceholder.typicode.com/users', {}).then(res => {
-        console.log(res);
-        state.userArray = res.data;
-      });
+      axios
+        .get('https://jsonplaceholder.typicode.com/users', {})
+        .then((res) => {
+          console.log(res);
+          state.userArray = res.data;
+        });
     }
 
-    watchEffect(()=> {
-      console.log('count被改变：')
-      console.log(count.value)
-    })
+    watchEffect(() => {
+      console.log('count被改变：');
+      console.log(count.value);
+    });
 
     onMounted(() => {
       getData();
     });
 
     function increment() {
-      console.log('increment')
+      console.log('increment');
       count.value++;
+    }
+
+    function addNum() {
+      dataNum++;
+    }
+
+    function print() {
+      console.log(dataNum);
     }
 
     return {
       state,
       increment,
-      count
+      count,
+      addNum,
+      print,
     };
-  }
+  },
 });
 </script>
 
