@@ -24,7 +24,7 @@ export default defineComponent({
   setup() {
     const state = reactive({
       name: 'SubPage',
-      userArray: new Array<{name: String, id: number}>(),
+      userArray: new Array<{name: string, id: number}>(),
     });
     let dataNum = 0;
 
